@@ -12,3 +12,76 @@
 **Conclusions**: ATD repayment may reshape affected source code rather than simply remove architectural debt. The results indicate that non--self-fixed ATD can be associated with greater structural change, and that repeated file modifications are linked to changes in dependencies and complexity. 
 
 ## Contents
+
+# Replication Package
+
+This replication package includes the dataset, analysis scripts, and figures used in the empirical study of self-fixed and non-self-fixed Architecture Technical Debt (ATD).
+
+## Directory Overview
+
+| Path | Description |
+|---|---|
+| `code/` | Contains Python scripts for metric extraction, statistical analysis, and visualization. |
+| `dataset/` | Contains the traced ATD dataset used in the study. |
+| `figures/` | Contains the generated figures reported in the paper. |
+
+## Code Files
+
+| File | Description |
+|---|---|
+| `understand_dependency_complexity_extraction.py` | Extracts dependency and complexity metrics from the analyzed source-code projects using Understand by SciTools. The extracted metrics include dependency-related measures such as Fan-In and Fan-Out, as well as complexity-related measures used in the subsequent RQ1 and RQ2 analyses. |
+| `intro-payment-metrics.py` | Prepares metric values for the ATD introduction and repayment phases. |
+| `rq1-rq2-wilcoxon-dan-boxplot-issue-level.py` | Performs issue-level Wilcoxon signed-rank tests and generates boxplots for RQ1 and RQ2. |
+| `rq1_rq2_mann_whitney_and_boxplot.py` | Performs Mann–Whitney U tests to compare self-fixed and non-self-fixed ATD items. |
+| `rq3-file-change-analysis.py` | Analyzes the relationship between file change frequency and metric deltas for RQ3. |
+
+## Dataset Files
+
+| File | Description |
+|---|---|
+| `dataset/atd-dataset.csv` | Contains the ATD dataset collected from Jira issue trackers. |
+| `dataset/ATD-SELF-FIXED-FINAL-DATASET-TRACED.csv` | Final traced ATD dataset containing ATD items, repayment classification, lifecycle commits, affected files, and associated metrics. |
+
+## Figure Files
+
+| File | Description |
+|---|---|
+| `RQ1_dependency_metrics_file_level.pdf` | File-level visualization of dependency metric changes for RQ1. |
+| `RQ1_dependency_metrics.pdf` | Issue-level visualization of dependency metric changes for RQ1. |
+| `RQ2_complexity_metrics_file_level.pdf` | File-level visualization of complexity metric changes for RQ2. |
+| `RQ2_complexity_metrics.pdf` | Issue-level visualization of complexity metric changes for RQ2. |
+| `rq3_complexity_file_commit_count_vs_metric_deltas.pdf` | Scatter plots showing the relationship between file change frequency and complexity metric deltas for RQ3. |
+| `rq3_dependency_file_commit_count_vs_metric_deltas.pdf` | Scatter plots showing the relationship between file change frequency and dependency metric deltas for RQ3. |
+
+
+## Reproducing the Metric Extraction
+
+The script `understand_dependency_complexity_extraction.py` is used to extract dependency and complexity metrics from the analyzed projects. It relies on **Understand by SciTools** to automatically analyze the source code at two lifecycle points for each traced ATD issue: the **introduction commit** and the **payment commit**.
+
+The script uses the traced issue dataset:
+
+```text
+dataset/ATD-SELF-FIXED-FINAL-DATASET-TRACED.csv
+```
+
+These paths are defined as global variables in `understand_dependency_complexity_extraction.py`. If Understand is installed in a different location, edit the corresponding path variable in the script.
+
+For Windows, update the Understand path as follows:
+
+```python
+UNDERSTAND_BIN_WINDOWS = r"C:\Program Files\SciTools\bin\pc-win64"
+```
+
+For Linux, update the Understand path as follows:
+```python
+UNDERSTAND_BIN_LINUX = "/root/scitools/bin/linux64"
+```
+
+If your Understand installation is located elsewhere, replace these values with the correct local installation path.
+
+### Running Python Scripts
+
+All Python scripts can be executed from the root directory of the replication package using the following general command:
+
+```bash
+python "code/<script_name>.py"
