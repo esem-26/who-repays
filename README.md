@@ -13,8 +13,6 @@
 
 ## Contents
 
-# Replication Package
-
 This replication package includes the dataset, analysis scripts, and figures used in the empirical study of self-fixed and non-self-fixed Architecture Technical Debt (ATD).
 
 ## Directory Overview
@@ -34,6 +32,7 @@ This replication package includes the dataset, analysis scripts, and figures use
 | `rq1-rq2-wilcoxon-dan-boxplot-issue-level.py` | Performs issue-level Wilcoxon signed-rank tests and generates boxplots for RQ1 and RQ2. |
 | `rq1_rq2_mann_whitney_and_boxplot.py` | Performs Mann–Whitney U tests to compare self-fixed and non-self-fixed ATD items. |
 | `rq3-file-change-analysis.py` | Analyzes the relationship between file change frequency and metric deltas for RQ3. |
+| `requirements.txt` | Lists the Python dependencies required to run the replication package scripts. |
 
 ## Dataset Files
 
@@ -79,9 +78,27 @@ UNDERSTAND_BIN_LINUX = "/root/scitools/bin/linux64"
 
 If your Understand installation is located elsewhere, replace these values with the correct local installation path.
 
+### Environment and Requirements
+
+The replication package was prepared and tested with the following environment:
+
+| Component | Version / File |
+|---|---|
+| Python | Python 3.13.7 |
+| Understand by SciTools | Build 1236 |
+| Python dependencies | `requirements.txt` |
+
+Install the required Python packages from the root directory of the replication package using:
+
+```bash
+pip install -r requirements.txt
+```
+
 ### Running Python Scripts
 
 All Python scripts can be executed from the root directory of the replication package using the following general command:
 
 ```bash
 python "code/<script_name>.py"
+
+```
